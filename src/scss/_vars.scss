@@ -1,0 +1,15 @@
+// если вы хотите использовать sass-переменные - удалите root
+// colors
+:root {
+  // base
+  --font-family: "Lato", sans-serif;
+  --content-width: 1260px;
+  --container-offset: 25px;
+  --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
+
+  // colors
+  --black-color: #050505;
+  --darkgrey-color: #222222;
+  --red-color: #CF2F44;
+  --light-color: #ffffff;
+}
