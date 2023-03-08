@@ -20,18 +20,15 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-
   /** Checkbox limit */
   const onlyThreeCkeckboxes = document.querySelectorAll('.onlyThreeCkeckbox');
 
   onlyThreeCkeckboxes.forEach(container => {
     const checkboxes = container.querySelectorAll('.btn-toolbar input[type="checkbox"]');
-    let checkedCount = 0;
 
     checkboxes.forEach((checkbox, index) => {
       if (index >= 3) {
         checkbox.click();
-        checkedCount++;
       }
 
       checkbox.addEventListener('input', () => {
@@ -86,33 +83,40 @@ window.addEventListener('DOMContentLoaded', () => {
 
   /** Show More Table */
   try {
-    const tablesLength = document.querySelectorAll('.withBtnShowMore .ej-tbody').length;
+    const allTableswithBtnShowMore = document.querySelectorAll('.withBtnShowMore');
 
-    const showMore = document.createElement('div');
-    showMore.classList.add('more-items');
-    showMore.setAttribute('id', 'more-items');
-
-    showMore.innerHTML = `
-          <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 1L11 10L1 1" stroke="black" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+    allTableswithBtnShowMore.forEach(table => {
+      const showMore = document.createElement('div');
+      showMore.classList.add('more-items');
+      showMore.setAttribute('id', 'more-items');
+      showMore.innerHTML = `
+        <svg width="22" height="12" viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 1L11 10L1 1" stroke="black" stroke-width="2" stroke-linecap="round"/>
+        </svg>
       `;
 
-    document.querySelector('.withBtnShowMore .pol-table__table').appendChild(showMore);
+      let itemsToShow = 2;
+      const allItems = Array.from(table.querySelector('.tableWrapper').children);
+      const visibleItems = allItems.slice(0, itemsToShow);
+      visibleItems.forEach(el => el.classList.add('is-visible'));
 
-    let items = 2;
-
-    showMore.addEventListener('click', () => {
-      items += 1;
-      const array = Array.from(document.querySelector('.tableWrapper').children);
-      const visItems = array.slice(1, items);
-
-      visItems.forEach(el => el.classList.add('is-visible'));
-
-      if (visItems.length === tablesLength) {
+      if (visibleItems.length === allItems.length) {
         showMore.style.display = 'none';
       }
+
+      showMore.addEventListener('click', () => {
+        itemsToShow += 1;
+        const newVisibleItems = allItems.slice(0, itemsToShow);
+        newVisibleItems.forEach(el => el.classList.add('is-visible'));
+
+        if (newVisibleItems.length === allItems.length) {
+          showMore.style.display = 'none';
+        }
+      });
+
+      table.querySelector('.pol-table__table').appendChild(showMore);
     });
-    showMore.click();
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 });
