@@ -24,6 +24,7 @@
   .pol-table__table {
     border-radius: 0;
     border: none;
+    overflow: visible;
   }
 
   .letOpen {
@@ -34,7 +35,7 @@
     .letOpenBlock {
       position: absolute;
       left: 90%;
-      top: 10px;
+      top: 25px;
       background-color: #fff;
       z-index: 55;
       border: 1px solid #999999;
@@ -165,7 +166,6 @@
   .ej-tbody {
     position: relative;
     border-bottom: 2px solid #999999 !important;
-    display: none;
     > tr td {
       &:nth-child(2) {
         // background-color: #fff !important;
@@ -190,9 +190,6 @@
           }
         }
       }
-    }
-    &.is-visible {
-      display: table-row-group;
     }
   }
 
@@ -291,6 +288,21 @@
       }
     }
   }
+
+  &--clearTr {
+    .ej-tbody > tr td:nth-child(2):before {
+      display: none;
+    }
+  }
+
+  &.withBtnShowMore {
+    .ej-tbody {
+      display: none;
+      &.is-visible {
+        display: table-row-group;
+      }
+    }
+  }
 }
 
 .mainTable {
@@ -320,7 +332,7 @@
     padding-bottom: 8px;
     max-width: max-content;
     cursor: pointer;
-    font-family: "UniversNextPro", Sans-serif;
+    font-family: 'UniversNextPro', Sans-serif;
     font-weight: 600;
     &::after {
       content: '';
@@ -338,6 +350,7 @@
     min-width: auto;
     border-radius: 0;
     border: 1px solid #a0a0a0;
+    z-index: 99;
   }
 
   .nav {
