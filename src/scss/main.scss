@@ -21,6 +21,9 @@
 }
 
 .pol-table {
+  th, tr, td {
+    background-color: #fff !important;
+  }
   .pol-table__table {
     border-radius: 0;
     border: none;
@@ -28,7 +31,7 @@
   }
 
   .letOpen {
-    background-color: #d6eedd;
+    background-color: #d6eedd !important;
     cursor: pointer;
     position: relative;
 
@@ -167,7 +170,7 @@
     position: relative;
     border-bottom: 2px solid #999999 !important;
     > tr td {
-      &:nth-child(2) {
+      &:nth-child(3n+2) {
         // background-color: #fff !important;
         // z-index: 1;
         position: relative;
@@ -184,7 +187,7 @@
     }
     > tr {
       &:last-child {
-        td:nth-child(2) {
+        td:nth-child(3n+2) {
           &:before {
             height: 100%;
           }
@@ -290,7 +293,7 @@
   }
 
   &--clearTr {
-    .ej-tbody > tr td:nth-child(2):before {
+    .ej-tbody > tr td:nth-child(3n+2):before {
       display: none;
     }
   }

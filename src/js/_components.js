@@ -95,7 +95,7 @@ window.addEventListener('DOMContentLoaded', () => {
         </svg>
       `;
 
-      let itemsToShow = 2;
+      let itemsToShow = 3;
       const allItems = Array.from(table.querySelector('.tableWrapper').children);
       const visibleItems = allItems.slice(0, itemsToShow);
       visibleItems.forEach(el => el.classList.add('is-visible'));
